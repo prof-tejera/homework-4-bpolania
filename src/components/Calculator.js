@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import "./Calculator.css";
 import Number from "./Number";
 import Operation from "./Operation";
 import Screen from "./Screen";
@@ -72,29 +73,37 @@ const Calculator = () => {
   };
 
   return (
-    <div>
-      <Screen value={screenValue} />
-      <div style={{ display: "flex" }}>
+    <div className="box">
+      <Screen className="display input" value={screenValue} />
+      <div className="keys">
         <div>
-          <Number value={0} onClick={() => handleNumberClick(getNewScreenValue(0))} />
-          <Number value={1} onClick={() => handleNumberClick(getNewScreenValue(1))} />
-          <Number value={2} onClick={() => handleNumberClick(getNewScreenValue(2))} />
-          <Number value={3} onClick={() => handleNumberClick(getNewScreenValue(3))} />
-          <Number value={4} onClick={() => handleNumberClick(getNewScreenValue(4))} />
-          <Number value={5} onClick={() => handleNumberClick(getNewScreenValue(5))} />
-          <Number value={6} onClick={() => handleNumberClick(getNewScreenValue(6))} />
-          <Number value={7} onClick={() => handleNumberClick(getNewScreenValue(7))} />
-          <Number value={8} onClick={() => handleNumberClick(getNewScreenValue(8))} />
-          <Number value={9} onClick={() => handleNumberClick(getNewScreenValue(9))} />
+          <div className="row">
+            <Number className="key number" value={1} onClick={() => handleNumberClick(getNewScreenValue(1))} />
+            <Number className="key number" value={2} onClick={() => handleNumberClick(getNewScreenValue(2))} />
+            <Number className="key number" value={3} onClick={() => handleNumberClick(getNewScreenValue(3))} />
+            <Operation className="key operation" value="+" onClick={() => handleOperationClick("+")} />
+          </div>
+          <div className="row">
+            <Number className="key number" value={4} onClick={() => handleNumberClick(getNewScreenValue(4))} />
+            <Number className="key number" value={5} onClick={() => handleNumberClick(getNewScreenValue(5))} />
+            <Number className="key number" value={6} onClick={() => handleNumberClick(getNewScreenValue(6))} />
+            <Operation className="key operation" value="-" onClick={() => handleOperationClick("-")} />
+          </div>
+          <div className="row">
+            <Number className="key number" value={7} onClick={() => handleNumberClick(getNewScreenValue(7))} />
+            <Number className="key number" value={8} onClick={() => handleNumberClick(getNewScreenValue(8))} />
+            <Number className="key number" value={9} onClick={() => handleNumberClick(getNewScreenValue(9))} />
+            <Operation className="key operation" value="/" onClick={() => handleOperationClick("/")} />
+          </div>
+          <div className="row">
+            <Operation className="key operation" value={isAllClear ? "AC" : "C"} onClick={() => clear(isAllClear)} />
+            <Number className="key number" value={0}  onClick={() => handleNumberClick(getNewScreenValue(0))} />
+            <Operation className="key equal" value="=" onClick={() => handleOperationClick("=")} />
+            <Operation className="key operation" value="x" onClick={() => handleOperationClick("x")} />
+          </div>
+          
         </div>
-        <div style={{ paddingLeft: 10 }}>
-          <Operation value="+" onClick={() => handleOperationClick("+")} />
-          <Operation value="/" onClick={() => handleOperationClick("/")} />
-          <Operation value="x" onClick={() => handleOperationClick("x")} />
-          <Operation value="-" onClick={() => handleOperationClick("-")} />
-          <Operation value="=" onClick={() => handleOperationClick("=")} />
-          <Operation value={isAllClear ? "AC" : "C"} onClick={() => clear(isAllClear)} />
-        </div>
+        
       </div>
     </div>
   );
